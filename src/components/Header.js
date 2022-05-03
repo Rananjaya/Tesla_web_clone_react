@@ -1,8 +1,15 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import styled from 'styled-components';
 import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 import { style } from '@mui/system';
+import {selectCars} from '../features/car/carSlice';
+import {useSelector} from 'react-redux';
 function Header() {
+
+  const [Open, setOpen] = useState(false);
+   const cars = useSelector(selectCars)
+   console.log("Carsss",cars);
   return (
    <Container>
     <a>
@@ -18,8 +25,25 @@ function Header() {
     <RightMenu>
          <a href="#">Shop</a>
          <a href="#">Tesla Account</a>
-         <CustomeMenu/>
+         <CustomeMenu onClick={()=>{
+           setOpen(true)
+         }}/>
     </RightMenu>
+    <BurgerNav show={Open}>
+      <CloseWrapper>
+          <CustomClose onClick={()=>{
+            setOpen(false)
+          }}/> 
+      </CloseWrapper>
+   
+        <li><a href="#">Existing Inventory</a></li>
+        <li><a href="#">Existing Inventory</a></li>
+        <li><a href="#">Existing Inventory</a></li>
+        <li><a href="#">Existing Inventory</a></li>
+        <li><a href="#">Existing Inventory</a></li>
+        <li><a href="#">Existing Inventory</a></li>
+
+    </BurgerNav>
    </Container>
   )
 }
@@ -36,12 +60,8 @@ const Container = styled.div`
       top: 0;
       right : 0;
       left : 0;
-    
-
-     
-`
-
-
+      z-index :10;
+    `
 const Menu = styled.div`
 display: flex;
 align-items : center;
@@ -71,4 +91,41 @@ a {
 `
 const CustomeMenu = styled(MenuIcon)`
    cursor : pointer
+`
+
+const BurgerNav = styled.div`
+   position: fixed;
+   top:0;
+   bottom:0;
+   right : 0;
+   background : white;
+   width: 300px;
+   z-index:16;
+   padding:20px;
+   display:flex;
+   flex-direction : column;
+   text-align : start;
+   list-style:none;
+   transform : ${props => props.show ? 'translateX(0)' : 'translateX(100%)'};
+   transition: transform 0.2s;
+   li {
+     padding:15px 0;
+     border-bottom: 1px solid rgba(0,0,0,.2);
+
+     a {
+       font-weight : 600;
+     }
+   }
+
+`
+
+const CustomClose = styled(CloseIcon)`
+   cursor : pointer;
+`
+
+const CloseWrapper = styled.div`
+
+display : flex;
+justify-content : flex-end
+
 `
