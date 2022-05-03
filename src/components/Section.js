@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 function Section(props) {
-  console.log("Section_props",props);
+  console.log("Section_props", props);
   return (
     <Wrap bgImage={props.backgroundImg}>
       <ItemText>
@@ -9,18 +9,21 @@ function Section(props) {
         <p>{props.descripation}</p>
       </ItemText>
 
-    <Buttons>
-    <ButtonGroup>
-        <LeftButton>
+      <Buttons>
+        <ButtonGroup>
+          <LeftButton>
             {props.leftBtnText}
-        </LeftButton>
-        <RightButton>
-            {props.rightBtnText}
-        </RightButton>
-      </ButtonGroup>
-      <DownArrow src="/images/down-arrow.svg"/>
-    </Buttons>
-  
+          </LeftButton>
+          {props.rightBtnText &&
+            <RightButton>
+              {props.rightBtnText}
+            </RightButton>
+          }
+
+        </ButtonGroup>
+        <DownArrow src="/images/down-arrow.svg" />
+      </Buttons>
+
     </Wrap>
   )
 }
