@@ -17,10 +17,13 @@ function Header() {
     </a>
 
     <Menu>
-        <p><a href="#">Model S</a></p>
+      {cars && cars.map((car,index) => (
+          <p><a key={index} href="#">{car}</a></p>
+      ))}
+        {/* <p><a href="#">Model S</a></p>
         <p><a href="#">Model 3</a></p>
         <p><a href="#">Model X</a></p>
-        <p><a href="#">Model Y</a></p>
+        <p><a href="#">Model Y</a></p> */}
     </Menu>
     <RightMenu>
          <a href="#">Shop</a>
@@ -35,7 +38,9 @@ function Header() {
             setOpen(false)
           }}/> 
       </CloseWrapper>
-   
+      {cars && cars.map((car,index) => (
+          <li><a key={index} href="#">{car}</a></li>
+      ))}
         <li><a href="#">Existing Inventory</a></li>
         <li><a href="#">Existing Inventory</a></li>
         <li><a href="#">Existing Inventory</a></li>
